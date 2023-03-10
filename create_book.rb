@@ -1,11 +1,11 @@
 class CreateBook
   def create_book(books)
-    @books=books
+    @books = books
     puts 'Enter book\'s title'
-    title=gets.chomp
+    title = gets.chomp
     puts 'Enter author\'s name'
-    author=gets.chomp
-    @books.push(Book.new(title,author))
+    author = gets.chomp
+    @books.push(Book.new(title, author))
     puts 'Book has been successfully created'
   end
 end

@@ -19,7 +19,7 @@ def main
     when 5
       app.create_rental
     when 6
-      puts 'Enter person ID:'
+      puts 'Enter person\'s id'
       person_id = gets.chomp.to_i
       app.list_all_rentals(person_id)
     when 7

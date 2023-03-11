@@ -78,9 +78,7 @@ class App
     age = gets.chomp.to_i
     puts 'Enter your specialization'
     specialization = gets.chomp
-    puts 'Do you have your parents\' permission? [Y/N]'
-    parent_permission = gets.chomp
-    teacher = Teacher.new(name, age, specialization, parent_permission)
+    teacher = Teacher.new(name, age, specialization)
     @people << teacher
     puts 'Teacher Successfuly created'
   end
@@ -116,16 +114,15 @@ class App
     puts 'The book has been successfully rented!'
   end
 
-  # rubocop:enable Metrics/CyclomaticComplexity
-  def list_all_rentals(_person_id)
-    if @rentals.empty?
-      puts 'No books have been rented out!'
+  def list_all_rentals(person_id)
+    rentals = @rentals.select { |rental| rental.person.id == person_id }
+    if rentals.empty?
+      puts 'No rentals found for the given person ID!'
     else
-      puts 'Enter person\'s id'
-      id = gets.chomp.to_i
-      @rentals.each do |rental|
-        puts "#{rental.book.title} by #{rental.book.author}, rented on #{rental.date}" if rental.person.id == id
+      rentals.each do |rental|
+        puts "#{rental.book.title} by #{rental.book.author}, rented on #{rental.date}"
       end
     end
   end
+  
 end
